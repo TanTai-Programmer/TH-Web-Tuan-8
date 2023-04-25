@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book a Medical Appointment</title>
     <link rel="stylesheet" href="../CSS/bootstrap.css">
+    <script src="../JS/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../CSS/Style.css">
+    <script src="../JS/jquery.min.js"></script>
 </head>
 <body>
     <div class="Banner d-flex justify-content-between ">
@@ -19,7 +21,7 @@
                 <a class="nav-link" href="">Trang chu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Dat Lich</a>
+                <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#myModal">Dat Lich</a>
             </li>
         </ul>
     </nav>
@@ -42,6 +44,71 @@
             <td></td>
         </tr>
     </table>
-</body>
-</html>
 
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Đặt lịch khám online</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form id="form" class="form" action="#">
+            <div class="form-group p-2">
+                <label for="IDBN">Mã bệnh nhân:</label> <br>
+                <input type="text" id="IDBN" class="w-100 rounded" placeholder="">
+            </div>
+            <div class="form-group p-2"> 
+                <label for="Password">Mật khẩu:</label><br>
+                <input type="password" id="Password" class="w-100 rounded" placeholder="Nhap mat khau">
+            </div>
+            <div class="form-group p-2">
+                <label for="NgayKham">Ngày khám</label><br>
+                <input type="date" name="" id="NgayKham" class="w-100 rounded">
+            </div>
+            <div class="form-group p-2 d-inline-flex">
+                    <div>
+                        <p>Loại dịch vụ</p>
+                        <input type="checkbox" id="KhamTYC" class="form-check-input">
+                        <label for="KhamTYC">Khám theo yêu cầu</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="KhamNT" class="form-check-input">
+                        <label for="KhamNT">Điều trị ngoại trú</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="KhamBSYC" class="form-check-input">
+                        <label for="KhamBSYC" >Bác sĩ theo yêu cầu</label>
+                    </div>
+            </div>
+            <div class="from-group p-2">
+                <p for="ChuyenKhoa">Chuyên khoa:</p>
+                <select name="ChuyenKhoa" id="ChuyenKhoa" class="w-100 rounded">
+                    <option value="NgoaiTongQuat">Ngoại Tổng Quát</option>
+                    <option value="KhoaNoi">Khoa Nội</option>
+                    <option value="KhoaNhi">Khoa Nhi</option>
+                    <option value="KhoaHoiSuc">Khoa Hồi Sức</option>
+                </select>
+            </div>
+            <button class="btn-info btn text-light">Đặt lịch</button>
+            </form>
+        </div>
+
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info text-light" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  
+  
+</body>
+</html>  
