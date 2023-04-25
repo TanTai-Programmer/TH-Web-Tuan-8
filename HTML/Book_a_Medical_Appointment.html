@@ -11,17 +11,25 @@
     <script src="../JS/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            //Kiem tra Ma BN
             function CheckID (){
                 let IDBN=document.querySelector("#IDBN").value; //Tuong duong Jquery:  IDBN = $("#IDBN").val()
-                let patten = /^[a-z][0-9]/
+                let patten = /(BN)\-([0-9]{5,})/g
                 if (patten.test(IDBN)){
-                    console.log(IDBN)
+                    $("#ErrorID").html('Dung r :)')
+                    $("#ErrorID").addClass("success")
+                    $("#ErrorID").removeClass('errorinput')
+                }
+                else{
+                    $("#ErrorID").html('Sai roi kia ~!! Nhap BN-YYYYY Y=0-9')
+                    $("#ErrorID").addClass('errorinput')
                 }
             }
             $("#IDBN").blur(function(e){
                 CheckID()
-
             })
+            //Kiem tra Password 
+
             var luwa = document.querySelector("#luu")
             luwa.onclick = submit
             var STT = 0
@@ -29,17 +37,28 @@
                 STT = STT+1
                 return STT
             }
+            var ID = document.querySelector("#IDBN").value
+            var MK = document.querySelector("#Password").value
+            var NgayKham = document.querySelector("#NgayKham").value
+            var Phuthu =[]
+            $.each($("input[type='checkbox']:checked"), function() {
+                    Phuthu.push($(this).val());
+                });
+            var ChuyenKhoa = document.querySelector("#ChuyenKhoa").value
             function submit(){
-            var ID = "A"
-            var MK = "22-04-2"
-            var NgayKham = "22-04"
-            var Phuthu = "xdbzdf"
-            var ChuyenKhoa = "TOng quat"
             let trnew = "<tr><td>"+ TangSTT() +"</td><td>"+ID +"</td><td>" + MK + "</td><td>" + NgayKham + "</td><td>" + Phuthu + "</td><td>" + ChuyenKhoa + "</td></tr>";
             $("#Table").append(trnew);
             }  
         })
     </script>
+    <style>
+        .success{
+            color:green
+        }
+        .errorinput{
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div class="Banner d-flex justify-content-between ">
@@ -57,7 +76,6 @@
         </ul>
     </nav>
     <table class="table table table-striped table-hover" id="Table">
-
         <tr class="table-dark">
             <th>STT</th>
             <th>Mã bệnh nhân</th>
@@ -65,14 +83,6 @@
             <th>Ngày Khám</th>
             <th>Phụ thu dịch vụ</th>
             <th>Chuyên khoa</th>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tr>
     </table>
 
@@ -107,25 +117,25 @@
             <div class="form-group p-2 d-inline-flex">
                     <div>
                         <p>Loại dịch vụ</p>
-                        <input type="checkbox" id="KhamTYC" class="form-check-input">
+                        <input type="checkbox" name="LoaiDV" id="KhamTYC" value="Khám theo yêu cầu" class="form-check-input">
                         <label for="KhamTYC">Khám theo yêu cầu</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="KhamNT" class="form-check-input">
+                        <input type="checkbox" name="LoaiDV" id="KhamNT" value="Khám ngoại trú" class="form-check-input">
                         <label for="KhamNT">Điều trị ngoại trú</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="KhamBSYC" class="form-check-input">
+                        <input type="checkbox" name="LoaiDV" id="KhamDV" value="Bác sĩ theo yêu cầu" class="form-check-input">
                         <label for="KhamBSYC" >Bác sĩ theo yêu cầu</label>
                     </div>
             </div>
             <div class="from-group p-2">
                 <p for="ChuyenKhoa">Chuyên khoa:</p>
                 <select name="ChuyenKhoa" id="ChuyenKhoa" class="w-100 rounded">
-                    <option value="NgoaiTongQuat">Ngoại Tổng Quát</option>
-                    <option value="KhoaNoi">Khoa Nội</option>
-                    <option value="KhoaNhi">Khoa Nhi</option>
-                    <option value="KhoaHoiSuc">Khoa Hồi Sức</option>
+                    <option value="Ngoại Tổng Quát">Ngoại Tổng Quát</option>
+                    <option value="Khoa Nội ">Khoa Nội</option>
+                    <option value="Khoa Nhi ">Khoa Nhi</option>
+                    <option value="Khoa Hồi Sức">Khoa Hồi Sức</option>
                 </select>
             </div>
             <button class="btn-info btn text-light" id="luu">Đặt lịch</button>
