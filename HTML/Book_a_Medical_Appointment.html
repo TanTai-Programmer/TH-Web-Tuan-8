@@ -29,7 +29,23 @@
                 CheckID()
             })
             //Kiem tra Password 
-
+            function CheckPass(){
+                PW = document.querySelector("#Password")
+                let PWcheck =/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/gm
+                if(PWcheck.test(PW)){
+                    $("#Passwordcomplexity").html("Mat khau manh !")
+                    $("#Passwordcomplexity").removeClass('errorinput')
+                    $("#Passwordcomplexity").addClass('success')
+                }
+                else{
+                    $("#Passwordcomplexity").html("Mat khau yeu")
+                    $("#Passwordcomplexity").addClass('errorinput')
+                }
+            }
+     
+            $("#Password").blur(function(e){
+                CheckPass()
+            })
             var luwa = document.querySelector("#luu")
             luwa.onclick = submit
             var STT = 0
@@ -37,8 +53,8 @@
                 STT = STT+1
                 return STT
             }
-            var ID = document.querySelector("#IDBN").value
-            var MK = document.querySelector("#Password").value
+            // var ID = document.querySelector("#IDBN").value
+            // var MK = document.querySelector("#Password").value
             var NgayKham = document.querySelector("#NgayKham").value
             var Phuthu =[]
             $.each($("input[type='checkbox']:checked"), function() {
@@ -46,7 +62,7 @@
                 });
             var ChuyenKhoa = document.querySelector("#ChuyenKhoa").value
             function submit(){
-            let trnew = "<tr><td>"+ TangSTT() +"</td><td>"+ID +"</td><td>" + MK + "</td><td>" + NgayKham + "</td><td>" + Phuthu + "</td><td>" + ChuyenKhoa + "</td></tr>";
+            let trnew = "<tr><td>"+ TangSTT() +"</td><td>"+IDBN +"</td><td>" + PW + "</td><td>" + NgayKham + "</td><td>" + Phuthu + "</td><td>" + ChuyenKhoa + "</td></tr>";
             $("#Table").append(trnew);
             }  
         })
@@ -101,7 +117,7 @@
             <form id="form" class="form" action="#">
             <div class="form-group p-2">
                 <label for="IDBN">Mã bệnh nhân:</label> <br>
-                <input type="text" id="IDBN" class="w-100 rounded" placeholder="">
+                <input type="text" id="IDBN" class="w-100 rounded" placeholder="BN-YYYYY (BN-12345)">
                 <span id="ErrorID">*</span>
             </div>
             <div class="form-group p-2"> 
